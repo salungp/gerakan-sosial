@@ -1,0 +1,1 @@
+$('.nav-link[href="'+window.location+'"]').addClass('active');

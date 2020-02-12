@@ -28,6 +28,11 @@ class Auth_model extends CI_Model
     return $this;
   }
 
+  public function create($data)
+  {
+    $this->db->insert($this->table, $data);
+  }
+
   public function get()
   {
     $this->data = $this->db->get($this->table);

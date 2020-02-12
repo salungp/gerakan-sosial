@@ -22,6 +22,11 @@ class AdminUser_model extends CI_Model
     return $data;
   }
 
+  public function create($data)
+  {
+    $this->db->insert($this->table, $data);
+  }
+
   public function orderBy($key, $val)
   {
     $this->db->order_by($key, $val);
@@ -61,8 +66,9 @@ class AdminUser_model extends CI_Model
     $this->db->insert($this->table, $data);
   }
 
-  public function update($data)
+  public function update($data, $id)
   {
+    $this->where('id', $id);
     $this->db->update($this->table, $data);
   }
 

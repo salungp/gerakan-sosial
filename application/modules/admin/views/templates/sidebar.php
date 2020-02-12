@@ -1,3 +1,4 @@
+<?php $user = $this->db->get_where('users', ['id' => $this->session->userdata('user_data')])->row_array(); ?>
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
@@ -33,7 +34,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="<?php echo base_url(); ?>" class="nav-link">
+          <a href="<?php echo base_url('admin/content'); ?>" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Content
@@ -76,14 +77,6 @@
               <i class="nav-icon far fa-circle"></i>
                 <p>
                   List users
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link">
-              <i class="nav-icon far fa-circle"></i>
-                <p>
-                  Tambah user
                 </p>
               </a>
             </li>

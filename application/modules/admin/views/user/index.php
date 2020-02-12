@@ -23,6 +23,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
+          <?php echo $this->session->flashdata('message'); ?>
           <div class="card">
             <div class="card-header">
               <?php if ($user['level'] == 1) : ?>
@@ -66,12 +67,14 @@
                     <?php if ($user['level'] == 1) : ?>
                       <td>
                         <div class="btn-group">
-                          <a href="<?php echo base_url('user/edit/'.$key['id']); ?>" class="btn btn-primary">
+                          <a href="<?php echo base_url('admin/user/edit/'.$key['id']); ?>" class="btn btn-primary">
                             <i class="fas fa-edit"></i>
                           </a>
-                          <a onclick="return window.confirm('Yakin mau dihapus?')" href="<?php echo base_url('user/delete/'.$key['id']); ?>" class="btn btn-danger">
+                          <?php if (count($data) > 1) : ?>
+                          <a onclick="return window.confirm('Yakin mau dihapus?')" href="<?php echo base_url('admin/user/delete/'.$key['id']); ?>" class="btn btn-danger">
                             <i class="fas fa-trash"></i>
                           </a>
+                          <?php endif; ?>
                         </div>
                       </td>
                     <?php endif; ?>
@@ -95,7 +98,7 @@
                         }
                       ?>
                     </td>
-                    <td><?php echo date('M, d Y'); ?></td>
+                    <td><?php echo date('M, d Y', strtotime($key['created_at'])); ?></td>
                   </tr>
                   <?php endforeach; ?>
                 </tbody>
@@ -127,7 +130,13 @@
           <form action="<?php echo base_url('admin/user/create'); ?>" method="POST">
             <div class="form-group">
               <label for="username">Username</label>
-              <input type="text" id="username" class="form-control" placeholder="Username">
+              <input type="text"
+                     id="username"
+                     name="username"
+                     class="form-control"
+                     placeholder="Username"
+                     required
+              />
             </div>
             <div class="form-group">
               <label for="level">Level</label>
@@ -139,11 +148,23 @@
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" id="password" class="form-control" placeholder="Password">
+              <input type="password"
+                     id="password"
+                     name="password"
+                     class="form-control"
+                     placeholder="Password"
+                     required
+              />
             </div>
             <div class="form-group">
               <label for="password_confirmation">Konfirmasi password</label>
-              <input type="password" id="password_confirmation" class="form-control" placeholder="Konfirmasi password">
+              <input type="password"
+                     id="password_confirmation"
+                     name="password_confirmation"
+                     class="form-control"
+                     placeholder="Konfirmasi password"
+                     required
+              />
             </div>
           </div>
           <div class="modal-footer justify-content-between">
